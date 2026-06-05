@@ -52,14 +52,17 @@ test('Verify that while the user is navigating through the cost quote flow the s
   await mainPage.goToMainPage();
   await mainPage.enterZipCode(testData.validDataSet.zipNumberValid);
   await mainPage.clickSubmitButtonStep1();
-  await mainPage.verifyFormCurrentStepNumber('2 of 5');
+  await mainPage.verifyFormCurrentStepNumber('2');
   await mainPage.selectStep2IndependenceOption();
   await mainPage.nextButtonStep2.click();
+  await mainPage.verifyFormCurrentStepNumber('3');
   await mainPage.selectStep3RentalOption();
   await mainPage.clickNextButtonStep3();
+  await mainPage.verifyFormCurrentStepNumber('4');
   await mainPage.enterNameStep4(testData.validDataSet.name);
   await mainPage.enterEmailStep4(testData.validDataSet.email);
   await mainPage.goToEstimateStep4.click();
+  await mainPage.verifyFormCurrentStepNumber('5');
   await mainPage.enterPhoneNumberStep5(testData.validDataSet.phoneNumber);
   await mainPage.submitYourRequestButtonStep5.click();
   await expect(page).toHaveTitle(testData.validDataSet.thankYouPageTitle);

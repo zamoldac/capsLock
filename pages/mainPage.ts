@@ -20,10 +20,14 @@ export class MainPage {
   readonly phoneNumberFieldStep5: Locator;
   readonly submitYourRequestButtonStep5: Locator;
   readonly stepCounter: Locator;
+  readonly form1: Locator;
+  readonly form2: Locator;
 
 
   constructor(page: Page) {
     this.page = page;
+    this.form1 = page.locator("#form-container-1");
+    this.form2 = page.locator("#form-container-2");
     this.enterZipCodeInput = page.locator('[placeholder="Enter ZIP Code"]').nth(0);
     this.submitButtonStep1 = page.locator('[data-tracking="btn-step-1"]').nth(0);
     this.independeceOptionStep2 = page.locator('[for="why-interested-independence-1"]').nth(0);
@@ -40,16 +44,15 @@ export class MainPage {
     this.goToEstimateStep4 = page.locator('[data-tracking="btn-step-4"]').nth(0);
     this.phoneNumberFieldStep5 = page.locator('[placeholder="(XXX)XXX-XXXX"]').nth(0);
     this.submitYourRequestButtonStep5 = page.locator('[data-tracking="btn-step-5"]').nth(0);
-    this.stepCounter = page.locator('[data-current-step="1"]').nth(0);
+    this.stepCounter = page.locator('.stepProgress__stepCurrent').nth(0);
    }
 
     async goToMainPage(){
     await this.page.goto('https://test-qa.capslock.global/');
    }
     async verifyFormCurrentStepNumber(expectedStepCounter: string){
-    const stepCounterText = await this.stepCounter.textContent();
-    //console.log(stepCounterText);
-    await expect(stepCounterText).toBe(expectedStepCounter);
+    const currentStep = await this.stepCounter.filter({ visible: true }).textContent();
+    expect(currentStep).toBe(expectedStepCounter);
    }
     async enterZipCode(zipCode: string){
     await this.enterZipCodeInput.scrollIntoViewIfNeeded();
