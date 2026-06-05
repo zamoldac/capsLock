@@ -1,10 +1,10 @@
 {
   "validDataSet": {
     "zipNumberValid": "68901",
-    "firstName": "Chad",
-    "lastName": "Chadding",
-    "email": "10.00",
-    "phoneNumber": "1234567890",
-    "mainPageTitle": "Caps Lock | QA test task"
+    "name": "Chad Chadding",
+    "email": "chad.chadding@example.com",
+    "phoneNumber": "2222222222",
+    "mainPageTitle": "Caps Lock | QA test task",
+    "thankYouPageTitle": "Caps Lock | QA test task - Thank you!"
   }
 }
