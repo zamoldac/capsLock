@@ -22,6 +22,10 @@ export class MainPage {
   readonly stepCounter: Locator;
   readonly form1: Locator;
   readonly form2: Locator;
+  readonly ooaZipEntryEmailField: Locator;
+  readonly ooaZipEntryEmailSubmitButton: Locator;
+  readonly ooaZipEntryFeedbackMessage: Locator;
+  readonly firstStepErrorMessage: Locator;
 
 
   constructor(page: Page) {
@@ -45,14 +49,36 @@ export class MainPage {
     this.phoneNumberFieldStep5 = page.locator('[placeholder="(XXX)XXX-XXXX"]').nth(0);
     this.submitYourRequestButtonStep5 = page.locator('[data-tracking="btn-step-5"]').nth(0);
     this.stepCounter = page.locator('.stepProgress__stepCurrent').nth(0);
+    this.ooaZipEntryEmailField = page.locator('[placeholder="Email Address"]').nth(0);
+    this.ooaZipEntryEmailSubmitButton = page.locator('button[type=submit]').nth(5);
+    this.ooaZipEntryFeedbackMessage = page.locator("[class='stepTitle__hdr fadeIn']").nth(0);
+    this.firstStepErrorMessage = page.locator('.helpBlock');
    }
 
     async goToMainPage(){
     await this.page.goto('https://test-qa.capslock.global/');
    }
+    async verifyMainPageTitle(){
+    await expect(this.page).toHaveTitle(testData.validDataSet.mainPageTitle);
+   }
+    async verifyFinishPageReached(){
+    await expect(this.page).toHaveTitle(testData.validDataSet.thankYouPageTitle);
+    }
+    async verifyReturnedErrorMessageFirstStep(expectedErrorMessage: string){
+    const errorMessage = await this.form1.locator('.helpBlock').nth(0).textContent();
+    expect(errorMessage).toBe(expectedErrorMessage);
+   }
     async verifyFormCurrentStepNumber(expectedStepCounter: string){
     const currentStep = await this.stepCounter.filter({ visible: true }).textContent();
     expect(currentStep).toBe(expectedStepCounter);
+   }
+    async ooaZipEntryFinishMessage(expectedFinishMessage: string){
+    const currentStep = await this.ooaZipEntryFeedbackMessage.textContent();
+    expect(currentStep).toContain(expectedFinishMessage);
+   }
+     async enterEmailOOAzipField(email: string){
+    await this.ooaZipEntryEmailField.scrollIntoViewIfNeeded();
+    await this.ooaZipEntryEmailField.fill(email);
    }
     async enterZipCode(zipCode: string){
     await this.enterZipCodeInput.scrollIntoViewIfNeeded();
@@ -96,6 +122,9 @@ export class MainPage {
    }
    async clickNextButtonStep3(){
     await this.nextButtonStep3.click();
+   }
+   async clickSubmitOOAzipField(){
+    await this.ooaZipEntryEmailSubmitButton.click();
    }
 
  }

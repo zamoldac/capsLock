@@ -6,5 +6,15 @@
     "phoneNumber": "2222222222",
     "mainPageTitle": "Caps Lock | QA test task",
     "thankYouPageTitle": "Caps Lock | QA test task - Thank you!"
+  },
+   "invalidDataSet": {
+    "zipNumberOOA": "11111",
+    "zipOOAFinishMessage": "Thank you for your interest, we will contact you when our service becomes available in your area!",
+    "emptyZipCode": "",
+    "zipEmptyErrorMessage": "Enter your ZIP code.",
+    "invalidZipCode": "abcde",
+    "zipInvalidErrorMessage": "Wrong ZIP code.",
+    "invalidPhoneNumber": "222",
+    "invalidPhoneNumberMessage": "Wrong phone number."
   }
 }
