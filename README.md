@@ -19,7 +19,7 @@ Top 5 Selected tests
     Test 2-6(including) - because form is covered from a main user experience and flow
 
 Found Defects
-    Step conter does not update accordingly to user progression (test #4 fails)
+    Step counter does not update accordingly to user progression (test #4 fails)
 
 Ideas of improvement
 1. add tags
